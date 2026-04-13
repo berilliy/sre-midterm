@@ -1,0 +1,20 @@
+groups:
+  - name: app-alerts
+    rules:
+      - alert: BackendHighLatencyWarning
+        expr: histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket[5m]))) > 0.8
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Backend latency warning"
+          description: "P95 latency is above 800ms for 2 minutes."
+
+      - alert: BackendAvailabilityCritical
+        expr: (sum(rate(http_requests_total{status_code!~"5.."}[5m])) / sum(rate(http_requests_total[5m]))) < 0.99
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Backend availability critical"
+          description: "Backend successful request ratio is below 99% for 2 minutes."

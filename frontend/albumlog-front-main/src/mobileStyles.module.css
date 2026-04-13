@@ -1,0 +1,49 @@
+/* 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N…YyMH0.4yX3Cmm6GnmuHlqFdoe9QcZKX44oaTm5jULQY8x54dc
+
+platon - "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlZjk5MDVlOWI0ZTgzZDQwMzYxNTgiLCJpYXQiOjE3MjU4ODg5MTIsImV4cCI6MTcyODQ4MDkxMn0.OfxJ7EdqJ38Fr848SMd_fzp4Fsk_fRgs9doiRuBiNBs"
+*/
+
+
+/*
+
+//////// MOBILE VERSION /////////////
+
+*/
+
+/* Body */
+
+body {
+    background: #2F2F2F;
+    font-family: "Raleway", sans-serif;
+}
+
+/* Header */
+
+.mobile {
+    background: #100F0F;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 80px;
+    color: #D9D9D9;
+    font-size: 41px;
+    font-weight: 600;
+    z-index: 999;
+    padding: 0 6px;
+}
+
+.mobile input {
+    width: 243px;
+    height: 41px;
+    font-size: 18px;
+    border-radius: 30px;
+    background: #E8EAED;
+    color: #949494;
+    font-family: "Raleway", sans-serif;
+    padding: 0 20px;
+}

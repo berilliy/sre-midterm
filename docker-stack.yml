@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  frontend:
+    image: albumlog-frontend:latest
+    deploy:
+      replicas: 2
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  backend:
+    image: albumlog-backend:latest
+    env_file:
+      - .\backend\.env
+    deploy:
+      replicas: 2
+    ports:
+      - "4444:4444"
+
+  prometheus:
+    image: prom/prometheus:latest
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    deploy:
+      replicas: 1
+    ports:
+      - "9090:9090"
+    volumes:
+      - .\prometheus\prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - .\prometheus\alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+
+  grafana:
+    image: grafana/grafana:latest
+    env_file:
+      - .\.env
+    deploy:
+      replicas: 1
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    deploy:
+      mode: global
+    ports:
+      - "9100:9100"
+
+volumes:
+  grafana_data:
